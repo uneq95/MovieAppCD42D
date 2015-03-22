@@ -12,11 +12,14 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.squareup.picasso.Picasso;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -37,12 +40,14 @@ import java.io.IOException;
  */
 public class SecondAct extends Activity {
     ScrollView visibleLayout;
-    String movieName="";
+    String movieName="titanic";
     TextView tvYear,tvimdbRating,tvTitle,tvDirector,tvPlot,tvLang,tvRdate,tvActor,tvCountry,tvrottenRating;
     DownloadChannelList download;
     String omdbRequestLink;
     Database_movie movieDb;
     Builder dialog;
+    ImageView MoviePoster;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,9 +73,6 @@ public class SecondAct extends Activity {
 
             Toast.makeText(getBaseContext(), "No Internet Access!",  Toast.LENGTH_LONG).show();
         }
-
-//        download =new DownloadChannelList(this);
-//        download.execute();
     }
     public void onClickAddToWatchList(View v){
         try{
@@ -92,6 +94,7 @@ public class SecondAct extends Activity {
     }
 
     public void initView(){
+        MoviePoster=(ImageView)findViewById(R.id.imageViewPoster);
         movieDb=new Database_movie(this);
         omdbRequestLink="http://www.omdbapi.com/?t="+movieName;
         tvYear=(TextView)findViewById(R.id.tvYEAR);
@@ -168,7 +171,7 @@ public class SecondAct extends Activity {
                     LinearLayout ll =(LinearLayout)((Activity) context).findViewById(R.id.acttwo_hidingLayout);
                     ll.setVisibility(View.GONE);
                     visibleLayout.setVisibility(View.VISIBLE);
-                System.out.println("layout visible");
+                    System.out.println("layout visible");
                     tvYear.setText(year+"");
                     tvimdbRating.setText(imdbRating+"");
                     tvTitle.setText(title+"");
@@ -178,6 +181,7 @@ public class SecondAct extends Activity {
                     tvRdate.setText(rdate+"");
                     tvActor.setText(actor+"");
                     tvCountry.setText(country+"");
+                Picasso.with(context).load(poster).resize(25,25).centerCrop().into(MoviePoster);
                 getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
                 super.onPostExecute(result);
             } catch (Exception e) {
@@ -247,6 +251,7 @@ public class SecondAct extends Activity {
             if (youtubeLink.length() > 15)
 
             {
+
                 int a = youtubeLink.indexOf("youtube.com"), in;
                 Toast.makeText(getBaseContext(), youtubeLink, Toast.LENGTH_SHORT).show();
                 for (in = a+11; in < youtubeLink.length(); in++) {
@@ -254,12 +259,14 @@ public class SecondAct extends Activity {
                         break;
                 }
 
-                String YoutubeId = youtubeLink.substring(a + 14, in );
 
+                String YoutubeId = youtubeLink.substring(a + 14, in );
+           System.out.println(YoutubeId);
                 Toast.makeText(getBaseContext(), YoutubeId, Toast.LENGTH_SHORT).show();
                 Intent i = new Intent(getBaseContext(), YoutubePlayer.class);
                 //i.putExtra("MovieTrailerLink",youtubeLink);
                 i.putExtra("YoutubeId", YoutubeId);
+                i.putExtra("movieNameTrailer",movie);
                 startActivity(i);
                 getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
                 super.onPostExecute(result);
@@ -278,7 +285,7 @@ public class SecondAct extends Activity {
          ll.addView(pb);
          ll.addView(tvLoading);
          dialog.setView(ll);
-         dialog.setCancelable(false);
+         dialog.setCancelable(true);
          dialog.create();
          dialog.show();
 

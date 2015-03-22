@@ -35,6 +35,7 @@ import android.widget.LinearLayout.LayoutParams;
 import android.widget.LinearLayout;
 //import android.widget.FrameLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class YoutubePlayer extends YouTubeBaseActivity implements YouTubePlayer.OnInitializedListener,YouTubePlayer.OnFullscreenListener {
@@ -48,13 +49,13 @@ public class YoutubePlayer extends YouTubeBaseActivity implements YouTubePlayer.
     List<RowItem> rowItem;
     YouTubePlayer youtubeplayer;
     YouTubePlayerView ytpView ;
-    ListView vidListView;
+    TextView tvMovieTrailerName;
     LinearLayout baseLayout;
     View otherViews;
 	private boolean isFullscreen;
 	private static final int PORTRAIT_ORIENTATION = Build.VERSION.SDK_INT < 9 ? ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 			: ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT;
-
+    String movieName;
 
 
 	@Override
@@ -64,33 +65,13 @@ public class YoutubePlayer extends YouTubeBaseActivity implements YouTubePlayer.
 		setContentView(R.layout.ytp);
 		ytpView = (YouTubePlayerView)findViewById(R.id.ytpView);
 		baseLayout=(LinearLayout)findViewById(R.id.layout);
+        tvMovieTrailerName=(TextView)findViewById(R.id.tvTrailerMovieName);
 		otherViews = findViewById(R.id.otherViews);
+        ytpView.initialize(API_KEY, this);
 		Intent i=getIntent();
         VIDEO_ID=i.getStringExtra("YoutubeId");
-//		VIDEO_ID=i.getStringExtra("selected video id");
-//		vidList=i.getStringArrayExtra("video list");
-//		videoId=i.getStringArrayExtra("videoID");
-//		ThumbnailsUrl=i.getStringArrayExtra("thumbnail url");
-//		 rowItem = new ArrayList<RowItem>();
-//		for(int x=0;x<vidList.length;x++){
-//			RowItem item =new RowItem(vidList[x], videoId[x], ThumbnailsUrl[x]);
-//			rowItem.add(item);
-//		}
-//		CustomListAdapter adapter= new CustomListAdapter(this, rowItem, ThumbnailsUrl);
-//		vidListView=(ListView)findViewById(R.id.channelVidList);
-//		vidListView.setAdapter(adapter);
-//		vidListView.setOnItemClickListener(new OnItemClickListener() {
-//
-//			@Override
-//			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
-//					long arg3) {
-//				// TODO Auto-generated method stub
-//				VIDEO_ID=videoId[arg2];
-//				youtubeplayer.loadVideo(VIDEO_ID);
-//				youtubeplayer.play();
-//			}
-//		});
-		//ytpView.initialize(API_KEY, this);
+        movieName=i.getStringExtra("movieNameTrailer");
+        tvMovieTrailerName.setText(movieName+"");
 		getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		doLayout();
 		

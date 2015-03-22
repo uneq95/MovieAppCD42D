@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="54dp"
+        android:layout_height="80dp"
+        android:src="@drawable/ic_launcher"
+        android:id="@+id/movieThumbnail"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/movieTitle"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/movieThumbnail"
+        android:layout_marginLeft="50dp"
+        android:gravity="right"
+        android:text="HITMAN"
+        />
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/movieReleaseDate"
+    android:layout_alignParentRight="true"
+android:layout_below="@+id/movieTitle"
+    android:text="31-31-31"
+
+
+    />
+    <RatingBar
+        android:id="@+id/movieAudienceScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/movieReleaseDate"
+        android:isIndicator="false"
+        android:max="5"
+        android:numStars="0"
+
+        />
+
+
+
+</RelativeLayout>

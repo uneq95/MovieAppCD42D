@@ -1,4 +1,4 @@
-package nairit;
+package com.example.sauhardsharma.myapplication;
 
 import android.app.Application;
 import android.content.Context;
@@ -7,6 +7,7 @@ import android.content.Context;
  * Created by nairit on 8/3/15.
  */
 public class MyApplication extends Application {
+    public static final String API_KEY_ROTTEN_TOMATOES="7mvn6ccuuukd79n4yxk8y2qx";
     private static MyApplication sInstance;
 
 
