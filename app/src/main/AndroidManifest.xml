@@ -2,14 +2,68 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.sauhardsharma.myapplication" >
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
+
+        <!--
         <activity
-            android:name=".MainActivity"
+            android:name=".FirstPageRt"
             android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        -->
+        <!-- <activity
+            android:name=".ActivityUsingTabLibrary"
+            android:label="MainActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>-->
+        <activity
+            android:name=".Subactivity"
+            android:label="@string/title_activity_subactivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity
+            android:name=".NavigationDrawerFragment"
+            android:label="@string/title_activity_navigation_drawer_fragment" >
+        </activity>
+        <activity
+            android:name=".YoutubePlayer"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="Youtube Player"
+            android:screenOrientation="sensor" >
+            <intent-filter>
+                <action android:name="com.pretechnex.ytpndqrcgen.YoutubePlayer" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+      <!--<activity
+        android:name=".TrailerActivity"
+        android:label="@string/title_activity_activity2" >
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+    </activity>-->
+        <activity
+            android:name=".SecondAct"
+            android:label="@string/title_activity_activity2" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
