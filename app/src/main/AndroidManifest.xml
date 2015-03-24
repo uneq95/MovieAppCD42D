@@ -21,7 +21,7 @@
             </intent-filter>
         </activity>
         -->
-        <!-- <activity
+        <activity
             android:name=".ActivityUsingTabLibrary"
             android:label="MainActivity" >
             <intent-filter>
@@ -29,7 +29,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>-->
+        </activity>
         <activity
             android:name=".Subactivity"
             android:label="@string/title_activity_subactivity" >
@@ -57,9 +57,8 @@
             android:name=".SecondAct"
             android:label="@string/title_activity_activity2" >
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="com.example.sauhardsharma.SecondAct" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
     </application>

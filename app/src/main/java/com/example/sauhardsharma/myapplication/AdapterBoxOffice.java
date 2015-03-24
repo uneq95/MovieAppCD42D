@@ -1,6 +1,7 @@
 package com.example.sauhardsharma.myapplication;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Movie;
 import android.provider.SyncStateContract;
 import android.support.v7.widget.RecyclerView;
@@ -33,6 +34,7 @@ public class AdapterBoxOffice extends Adapter<AdapterBoxOffice.ViewHolderBoxOffi
     private DateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd");
     private ImageLoader imageLoader;
     private Object title;
+    Context context;
 
     public AdapterBoxOffice(Context context){
         layoutInflater=LayoutInflater.from(context);
@@ -91,23 +93,25 @@ public class AdapterBoxOffice extends Adapter<AdapterBoxOffice.ViewHolderBoxOffi
 
 
 
-    static class ViewHolderBoxOffice extends RecyclerView.ViewHolder{
+     class ViewHolderBoxOffice extends RecyclerView.ViewHolder implements View.OnClickListener{
         private ImageView movieThumbnail;
         private TextView movieTitle;
         private TextView movieReleaseDate;
         private RatingBar movieAudienceScore;
-
-
-
-
-
         public ViewHolderBoxOffice(View itemView){
             super(itemView);
+
             movieThumbnail= (ImageView) itemView.findViewById(R.id.movieThumbnail);
             movieTitle= (TextView) itemView.findViewById(R.id.movieTitle);
             movieReleaseDate= (TextView) itemView.findViewById(R.id.movieReleaseDate);
             movieAudienceScore= (RatingBar) itemView.findViewById(R.id.movieAudienceScore);
         }
+         @Override
+         public void onClick(View v) {
+             Intent i=new Intent(context,SecondAct.class);
+             i.putExtra("SelectedMovie",movieTitle.getText().toString());
+             context.startActivity(i);
 
-    }
+         }
+     }
 }

@@ -8,11 +8,11 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.widget.ListView;
 
 import it.neokree.materialtabs.MaterialTab;
 import it.neokree.materialtabs.MaterialTabHost;
 import it.neokree.materialtabs.MaterialTabListener;
-import nairit.MyFragment;
 
 /**
  * Created by nairit on 21/3/15.
@@ -22,6 +22,9 @@ public class ActivityUsingTabLibrary extends ActionBarActivity implements Materi
     private Toolbar toolbar;
     private MaterialTabHost tabHost;
     private ViewPager viewPager;
+    public static final int MOVIES_SEARCH_RESULTS=1;
+    public static final int MOVIES_HITS=0;
+    public static final int MOVIES_UPCOMING=2;
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -29,7 +32,7 @@ public class ActivityUsingTabLibrary extends ActionBarActivity implements Materi
         toolbar = (Toolbar) findViewById(R.id.app_bar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-tabHost= (MaterialTabHost) findViewById(R.id.materialTabHost);
+        tabHost= (MaterialTabHost) findViewById(R.id.materialTabHost);
         viewPager= (ViewPager) findViewById(R.id.viewPager);
 
         ViewPagerAdapter adapter=new ViewPagerAdapter(getSupportFragmentManager());
@@ -77,8 +80,20 @@ tabHost= (MaterialTabHost) findViewById(R.id.materialTabHost);
 
         @Override
         public Fragment getItem(int num) {
-                return MyFragment.getInstance(num);
+               Fragment fragment=null;
+            switch (num){
+                case MOVIES_HITS:
+                    fragment=FragmentBoxOffice.newInstance("","");
+                    break;
+                case  MOVIES_SEARCH_RESULTS:
+                    fragment=FragmentSearch.newInstance("","");
+                    break;
+                case MOVIES_UPCOMING:
+                    //fragment=FragmentUpcoming.newInstance("","");
+                    break;
 
+            }
+         return fragment;
 
         }
 

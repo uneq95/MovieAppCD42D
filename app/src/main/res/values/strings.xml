@@ -22,7 +22,7 @@
     <string name="action_example">Example action</string>
     <string-array name="tabs">
         <item>HOLLYWOOD</item>
-        <item>BOLLYWOOD</item>
+        <item>WATCHLIST</item>
 
     </string-array>
     <string name="title_activity_activity2">activity2</string>
